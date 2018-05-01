@@ -16,6 +16,7 @@ private:
     bool checkForDigits(const string &str);
 
 public:
+    // constructors
     BigInteger() : number_("0"), sign_(false) {};
 
     BigInteger(const string &number, bool sign) : number_(number), sign_(sign) {
@@ -23,10 +24,11 @@ public:
             throw InvalidInputNumberString();
     };
 
-    BigInteger(const string &number) : BigInteger(number, false){};
+    explicit BigInteger(const string &number) : BigInteger(number, false){};
 
-    BigInteger(intmax_t n);
+    explicit BigInteger(intmax_t n);
 
+    // getters and setters
     inline const string &getNumber() const { return number_; };
 
     inline void setNumber(const string &number) { number_ = number; };
@@ -35,6 +37,51 @@ public:
 
     inline void setSign(bool sign) { sign_ = sign; };
 
+    // methods
+    BigInteger abs();
+
+    // operators
+
+    // comparision
+    bool operator==(const BigInteger &rhs);
+    inline bool operator!=(const BigInteger &rhs){
+        return !(operator==(rhs));
+    };
+
+    bool operator>(const BigInteger &rhs);
+    bool operator>=(const BigInteger &rhs){ return (operator>(rhs) || operator==(rhs)); };
+    bool operator<(const BigInteger &rhs){ return !(operator>(rhs)) && !(operator==(rhs)); };
+    bool operator<=(const BigInteger &rhs){ return (operator<(rhs) || operator==(rhs)); };
+
+    // arithmetic's
+//    BigInteger &operator+=(const BigInteger &rhs);
+//    BigInteger &operator-=(const BigInteger &rhs);
+//    BigInteger &operator*=(const BigInteger &rhs);
+//    BigInteger &operator/=(const BigInteger &rhs);
+
+//    BigInteger &operator-();
+//    BigInteger &operator+();
 };
+
+//inline BigInteger operator+(BigInteger lhs, const BigInteger &rhs) {
+//    return lhs += rhs;
+//}
+//
+//inline BigInteger operator-(BigInteger lhs, const BigInteger &rhs) {
+//    return lhs -= rhs;
+//}
+//
+//inline BigInteger operator*(BigInteger lhs, const BigInteger &rhs) {
+//    return lhs *= rhs;
+//}
+//
+//inline BigInteger operator/(BigInteger lhs, const BigInteger &rhs) {
+//    return lhs /= rhs;
+//}
+
+//inline BigInteger operator+(BigInteger lhs, int rhs) {
+//    return lhs += rhs;
+//}
+
 
 #endif //BIGINTEGER_BIGINTEGER_H

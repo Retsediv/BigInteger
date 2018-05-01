@@ -40,3 +40,44 @@ TEST(BigInteger, createFromNumber){
     EXPECT_EQ("999", b.getNumber());
     EXPECT_EQ(true, b.isSign());
 }
+
+TEST(BigInteger, equalityOperator){
+    BigInteger a{"123456"};
+    BigInteger b{123456};
+    BigInteger c{"1"};
+    BigInteger d{-1};
+    BigInteger q{1};
+
+    EXPECT_TRUE(b == a);
+    EXPECT_TRUE(q == c);
+    EXPECT_FALSE(b != a);
+
+    EXPECT_TRUE(b != c);
+    EXPECT_TRUE(b != d);
+    EXPECT_TRUE(c != d);
+    EXPECT_FALSE(b != a);
+}
+
+
+TEST(BigInteger, comparisonOperators){
+    BigInteger a{1234};
+    BigInteger b{1234};
+    BigInteger c{111};
+    BigInteger d{-1};
+    BigInteger q{1};
+
+    EXPECT_FALSE(a > a);
+    EXPECT_FALSE(a > b);
+    EXPECT_TRUE(a >= b);
+    EXPECT_TRUE(a >= c);
+    EXPECT_TRUE(a >= d);
+    EXPECT_TRUE(a >= q);
+
+
+    EXPECT_FALSE(a < c);
+    EXPECT_TRUE(d < q);
+    EXPECT_FALSE(b < a);
+    EXPECT_TRUE(b <= a);
+    EXPECT_TRUE(d <= q);
+    EXPECT_TRUE(d < q);
+}
