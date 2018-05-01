@@ -24,6 +24,7 @@ include_directories(${COMMON_INCLUDES})
 
 file(GLOB TEST_SRC_FILES
         ${PROJECT_SOURCE_DIR}/test/src/*.cpp
+        ${PROJECT_SOURCE_DIR}/Exceptions.h
         ${PROJECT_SOURCE_DIR}/BigInteger.*)
 
 add_executable(runAllTests ${TEST_SRC_FILES})
