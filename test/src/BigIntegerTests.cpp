@@ -81,3 +81,37 @@ TEST(BigInteger, comparisonOperators){
     EXPECT_TRUE(d <= q);
     EXPECT_TRUE(d < q);
 }
+
+TEST(BigInteger, addition){
+    BigInteger a{123};
+    BigInteger b{23};
+    BigInteger c{-46};
+
+    a += b;
+    EXPECT_EQ("146", a.getNumber());
+
+    a += c;
+    EXPECT_EQ("100", a.getNumber());
+}
+
+
+TEST(BigInteger, subtraction){
+    BigInteger a{123};
+    BigInteger b{23};
+    BigInteger c{-46};
+    BigInteger d{-10};
+
+    a -= b;
+    EXPECT_EQ("100", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+
+
+    a -= c;
+    EXPECT_EQ("146", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+
+    a += d;
+    EXPECT_EQ("136", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+
+}

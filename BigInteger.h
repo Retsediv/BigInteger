@@ -2,9 +2,12 @@
 #define BIGINTEGER_BIGINTEGER_H
 
 #include <string>
+#include <cmath>
 #include <sstream>
 #include "Exceptions.h"
 
+using std::cout;
+using std::endl;
 using std::string;
 using std::stringstream;
 
@@ -15,6 +18,8 @@ private:
 
     bool checkForDigits(const string &str);
 
+    string add(string left, string right);
+    string subtract(string left, string right);
 public:
     // constructors
     BigInteger() : number_("0"), sign_(false) {};
@@ -54,33 +59,38 @@ public:
     bool operator<=(const BigInteger &rhs){ return (operator<(rhs) || operator==(rhs)); };
 
     // arithmetic's
-//    BigInteger &operator+=(const BigInteger &rhs);
-//    BigInteger &operator-=(const BigInteger &rhs);
+    BigInteger &operator+=(const BigInteger &rhs);
+    BigInteger &operator-=(const BigInteger &rhs);
 //    BigInteger &operator*=(const BigInteger &rhs);
 //    BigInteger &operator/=(const BigInteger &rhs);
 
-//    BigInteger &operator-();
-//    BigInteger &operator+();
+    BigInteger &operator-();
+    BigInteger &operator+();
 };
 
-//inline BigInteger operator+(BigInteger lhs, const BigInteger &rhs) {
-//    return lhs += rhs;
-//}
-//
-//inline BigInteger operator-(BigInteger lhs, const BigInteger &rhs) {
-//    return lhs -= rhs;
-//}
-//
+inline BigInteger operator+(BigInteger lhs, const BigInteger &rhs) {
+    return lhs += rhs;
+}
+
+inline BigInteger operator-(BigInteger lhs, const BigInteger &rhs) {
+    return lhs -= rhs;
+}
+
+inline BigInteger operator+(BigInteger lhs, int rhs) {
+    return lhs += BigInteger(rhs);
+}
+
+inline BigInteger operator-(BigInteger lhs, int rhs) {
+    return lhs -= BigInteger(rhs);
+}
+
+
 //inline BigInteger operator*(BigInteger lhs, const BigInteger &rhs) {
 //    return lhs *= rhs;
 //}
 //
 //inline BigInteger operator/(BigInteger lhs, const BigInteger &rhs) {
 //    return lhs /= rhs;
-//}
-
-//inline BigInteger operator+(BigInteger lhs, int rhs) {
-//    return lhs += rhs;
 //}
 
 

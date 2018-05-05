@@ -14,7 +14,7 @@ file(GLOB SRC_FILES
         ${PROJECT_SOURCE_DIR}/Exceptions.h
         ${PROJECT_SOURCE_DIR}/BigInteger.*)
 
-add_executable(BigInteger main.cpp)
+add_executable(BigInteger ${SRC_FILES})
 
 #-------------------
 # Test
