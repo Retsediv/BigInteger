@@ -10,6 +10,7 @@
 using std::cout;
 using std::endl;
 using std::vector;
+using std::pair;
 using std::string;
 using std::stringstream;
 
@@ -23,6 +24,7 @@ private:
     string add(string left, string right);
     string subtract(string left, string right);
     string multiply(string left, string right);
+    pair<string, long long> divide(string n, long long den);
 public:
     // constructors
     BigInteger() : number_("0"), sign_(false) {};
@@ -65,7 +67,7 @@ public:
     BigInteger &operator+=(const BigInteger &rhs);
     BigInteger &operator-=(const BigInteger &rhs);
     BigInteger &operator*=(const BigInteger &rhs);
-//    BigInteger &operator/=(const BigInteger &rhs);
+    BigInteger &operator/=(const BigInteger &rhs);
 
     BigInteger &operator-();
     BigInteger &operator+();
@@ -91,9 +93,9 @@ inline BigInteger operator*(BigInteger lhs, const BigInteger &rhs) {
     return lhs *= rhs;
 }
 
-//inline BigInteger operator/(BigInteger lhs, const BigInteger &rhs) {
-//    return lhs /= rhs;
-//}
+inline BigInteger operator/(BigInteger lhs, const BigInteger &rhs) {
+    return lhs /= rhs;
+}
 
 
 #endif //BIGINTEGER_BIGINTEGER_H

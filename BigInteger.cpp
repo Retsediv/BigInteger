@@ -210,6 +210,28 @@ string BigInteger::multiply(string left, string right) {
 }
 
 
+pair<string, long long> BigInteger::divide(string n, long long den)  {
+    long long rem = 0;
+    string result; result.resize(n.size());
+
+    for(int indx=0, len = n.length(); indx<len; ++indx)
+    {
+        rem = (rem * 10) + (n[indx] - '0');
+        result[indx] = rem / den + '0';
+        rem %= den;
+    }
+    result.resize( n.length() );
+
+    while( result[0] == '0' && result.length() != 1)
+        result.erase(0,1);
+
+    if(result.length() == 0)
+        result = "0";
+
+    return make_pair(result, rem);
+}
+
+
 BigInteger &BigInteger::operator-=(const BigInteger &rhs) {
     BigInteger right(rhs);
     right.setSign(!right.isSign());
@@ -232,5 +254,17 @@ BigInteger &BigInteger::operator*=(const BigInteger &rhs) {
 
     // multiply strings
     setNumber(multiply(number_, rhs.number_));
+    return *this;
+}
+
+BigInteger &BigInteger::operator/=(const BigInteger &rhs) {
+    long long den = stoll(rhs.getNumber());
+
+    setNumber(divide(getNumber(), den).first );
+    setSign(isSign() != rhs.isSign());
+
+    if(getNumber() == "0") // avoid (-0) problem
+        setSign(false);
+
     return *this;
 }

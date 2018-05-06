@@ -135,3 +135,23 @@ TEST(BigInteger, multiplication){
     EXPECT_EQ("2376", a.getNumber());
     EXPECT_EQ(true, a.isSign());
 }
+
+TEST(BigInteger, divide){
+    BigInteger a{1000};
+    BigInteger b{2};
+    BigInteger c{-100};
+    BigInteger d{100};
+
+    a /= b;
+    EXPECT_EQ("500", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+
+
+    a /= c;
+    EXPECT_EQ("5", a.getNumber());
+    EXPECT_EQ(true, a.isSign());
+
+    a /= d;
+    EXPECT_EQ("0", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+}
