@@ -140,8 +140,8 @@ BigInteger &BigInteger::operator+=(const BigInteger &rhs) {
 }
 
 string BigInteger::multiply(string left, string right) {
-    int n1 = left.size();
-    int n2 = right.size();
+    size_t n1 = left.size();
+    size_t n2 = right.size();
     if (n1 == 0 || n2 == 0)
         return "0";
 
@@ -155,7 +155,7 @@ string BigInteger::multiply(string left, string right) {
     int i_n2 = 0;
 
     // Go from right to left in num1
-    for (int i = n1 - 1; i >= 0; i--) {
+    for (intmax_t i = n1 - 1; i >= 0; i--) {
         int carry = 0;
         int n1 = left[i] - '0';
 
@@ -164,7 +164,7 @@ string BigInteger::multiply(string left, string right) {
         i_n2 = 0;
 
         // Go from right to left in num2
-        for (int j = n2 - 1; j >= 0; j--) {
+        for (intmax_t j = n2 - 1; j >= 0; j--) {
             // Take current digit of second number
             int n2 = right[j] - '0';
 
@@ -192,7 +192,7 @@ string BigInteger::multiply(string left, string right) {
     }
 
     // ignore '0's from the right
-    int i = result.size() - 1;
+    intmax_t i = result.size() - 1;
     while (i >= 0 && result[i] == 0)
         i--;
 
@@ -202,7 +202,7 @@ string BigInteger::multiply(string left, string right) {
         return "0";
 
     // generate the result string
-    string s = "";
+    string s{""};
     while (i >= 0)
         s += std::to_string(result[i--]);
 
