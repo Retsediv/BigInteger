@@ -3,11 +3,13 @@
 
 #include <string>
 #include <cmath>
+#include <vector>
 #include <sstream>
 #include "Exceptions.h"
 
 using std::cout;
 using std::endl;
+using std::vector;
 using std::string;
 using std::stringstream;
 
@@ -20,6 +22,7 @@ private:
 
     string add(string left, string right);
     string subtract(string left, string right);
+    string multiply(string left, string right);
 public:
     // constructors
     BigInteger() : number_("0"), sign_(false) {};
@@ -61,7 +64,7 @@ public:
     // arithmetic's
     BigInteger &operator+=(const BigInteger &rhs);
     BigInteger &operator-=(const BigInteger &rhs);
-//    BigInteger &operator*=(const BigInteger &rhs);
+    BigInteger &operator*=(const BigInteger &rhs);
 //    BigInteger &operator/=(const BigInteger &rhs);
 
     BigInteger &operator-();
@@ -84,11 +87,10 @@ inline BigInteger operator-(BigInteger lhs, int rhs) {
     return lhs -= BigInteger(rhs);
 }
 
+inline BigInteger operator*(BigInteger lhs, const BigInteger &rhs) {
+    return lhs *= rhs;
+}
 
-//inline BigInteger operator*(BigInteger lhs, const BigInteger &rhs) {
-//    return lhs *= rhs;
-//}
-//
 //inline BigInteger operator/(BigInteger lhs, const BigInteger &rhs) {
 //    return lhs /= rhs;
 //}

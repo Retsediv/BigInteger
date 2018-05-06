@@ -7,6 +7,8 @@ int main() {
 
     a += b;
 
-    cout << a.getNumber() << endl;
+//    cout << a.multiply("21312", "213213");
+
+//    cout << a.getNumber() << endl;
     return 0;
 }

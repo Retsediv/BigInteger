@@ -115,3 +115,23 @@ TEST(BigInteger, subtraction){
     EXPECT_EQ(false, a.isSign());
 
 }
+
+TEST(BigInteger, multiplication){
+    BigInteger a{1};
+    BigInteger b{2};
+    BigInteger c{-12};
+    BigInteger d{99};
+
+    a *= b;
+    EXPECT_EQ("2", a.getNumber());
+    EXPECT_EQ(false, a.isSign());
+
+
+    a *= c;
+    EXPECT_EQ("24", a.getNumber());
+    EXPECT_EQ(true, a.isSign());
+
+    a *= d;
+    EXPECT_EQ("2376", a.getNumber());
+    EXPECT_EQ(true, a.isSign());
+}
